@@ -1,5 +1,5 @@
 public class Nimbus {
-    public static void greet() {
+    private static void greet() {
         String logo = """
                  _   _    _____    __  __   ____     _   _    ____ \s
                 | \\ | |  |_   _|  |  \\/  |  | __ )  | | | |  / ___|\s
@@ -13,9 +13,11 @@ public class Nimbus {
                 What can I do for you?
                 """);
     }
-    public static void exit() {
+
+    private static void exit() {
         System.out.println("Bye. Hope to see you again soon!\n");
     }
+
     public static void main(String[] args) {
         Nimbus.greet();
         Nimbus.exit();
