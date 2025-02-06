@@ -34,18 +34,21 @@ public class Nimbus {
         System.out.println("-----------------------------------------------------");
     }
 
+    /*
     private static void echo(String s) {
         if (s.equalsIgnoreCase("bye")) {
             Nimbus.exit();
             return;
         }
-
         System.out.println(s);
     }
+    */
 
     private static void help() {
         String help = """
-                Enter a task description to add it to the task list.
+                todo [task] -- add a task without a deadline
+                deadline [task] /by [time] --add a task with a deadline
+                event [task] /from [time] /to [time] --add a task with specific start and end time
                 list --list all tasks
                 mark [x] --mark task x as done
                 unmark [x] --mark task x as not done
@@ -53,32 +56,31 @@ public class Nimbus {
         System.out.println(help);
     }
 
-    public void addToDo(String s){
+    public void addToDo(String s) {
         this.tasks[this.numTasks] = new Todo(s);
     }
 
-    public void addDeadline(String s){
+    public void addDeadline(String s) {
         this.tasks[this.numTasks] = new Deadline(s);
     }
 
-    public void addEvent(String s){
+    public void addEvent(String s) {
         this.tasks[this.numTasks] = new Event(s);
     }
 
     public void addTask(String s) {
         String[] command = s.split(" ", 2);
-        if(command[1].isBlank()) {
+        if (command[0].isBlank() || command[1].isBlank()) {
             System.out.println("Please enter a task description");
             return;
-        }
-        if(command[0].equalsIgnoreCase("todo")){
+        } else if (command[0].equalsIgnoreCase("todo")) {
             this.addToDo(command[1]);
-        }
-        if(command[0].equalsIgnoreCase("deadline")){
+        } else if (command[0].equalsIgnoreCase("deadline")) {
             this.addDeadline(command[1]);
-        }
-        if(command[0].equalsIgnoreCase("event")){
+        } else if (command[0].equalsIgnoreCase("event")) {
             this.addEvent(command[1]);
+        } else {
+            System.out.println("Invalid command, enter -help for a list of commands");
         }
         this.numTasks++;
         System.out.println("Task added: " + command[1].replace("/", ""));
@@ -108,7 +110,6 @@ public class Nimbus {
     public static void main(String[] args) {
         Nimbus chatBot = new Nimbus();
         Scanner sc = new Scanner(System.in);
-
 
         Nimbus.greet();
         while (true) {

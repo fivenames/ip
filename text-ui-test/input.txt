@@ -1,0 +1,2 @@
+todo study for CS2113
+event CS2113 exam /from 3PM /to 4PM

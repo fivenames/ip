@@ -1,5 +1,5 @@
 public class Event extends Task {
-    private String from;
+    private final String from;
 
     public Event(String description) {
         super(description.split("/from")[0]);
