@@ -1,4 +1,12 @@
-package PACKAGE_NAME;
+public class Todo extends Task{
+    public Todo(String description) {
+        super(description);
+    }
 
-public class Todo {
+    @Override
+    public void print() {
+        System.out.print("[T]");
+        super.print();
+        System.out.println();
+    }
 }

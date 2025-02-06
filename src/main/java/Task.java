@@ -18,4 +18,9 @@ public class Task {
         this.description = description;
         this.isDone = false;
     }
+
+    public void print(){
+        System.out.print(this.getIsDone() ? "[X] " : "[ ] ");
+        System.out.print(this.getDescription());
+    }
 }

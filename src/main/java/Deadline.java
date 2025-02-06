@@ -1,4 +1,15 @@
-package PACKAGE_NAME;
+public class Deadline extends Task{
+    private String by;
 
-public class Deadline {
+    public Deadline(String description){
+        super(description.split("/by")[0]);
+        this.by = description.split("/by", 2)[1];
+    }
+
+    @Override
+    public void print() {
+        System.out.print("[D]");
+        super.print();
+        System.out.println("(by:" + by + ")");
+    }
 }
