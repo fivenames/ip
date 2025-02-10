@@ -70,8 +70,9 @@ public class Nimbus {
 
     public void addTask(String s) {
         String[] command = s.split(" ", 2);
-        if (command[0].isBlank() || command[1].isBlank()) {
-            System.out.println("Please enter a task description");
+
+        if (command.length < 2) {
+            System.out.println("Invalid command, enter -help for a list of commands");
             return;
         } else if (command[0].equalsIgnoreCase("todo")) {
             this.addToDo(command[1]);
@@ -81,7 +82,9 @@ public class Nimbus {
             this.addEvent(command[1]);
         } else {
             System.out.println("Invalid command, enter -help for a list of commands");
+            return;
         }
+
         this.numTasks++;
         System.out.println("Task added: " + command[1].replace("/", ""));
     }
@@ -109,28 +112,29 @@ public class Nimbus {
 
     public static void main(String[] args) {
         Nimbus chatBot = new Nimbus();
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         Nimbus.greet();
         while (true) {
-            String s = sc.nextLine();
-            if (s.isBlank()) {
+            String input = scanner.nextLine();
+            if (input.isBlank()) {
                 System.out.println("Enter -help to see the list of commands");
-            } else if (s.equalsIgnoreCase("bye")) {
+            } else if (input.equalsIgnoreCase("bye")) {
                 Nimbus.exit();
                 break;
-            } else if (s.equalsIgnoreCase("list")) {
+            } else if (input.equalsIgnoreCase("list")) {
                 chatBot.listTasks();
-            } else if (s.split(" ")[0].equalsIgnoreCase("mark")) {
-                chatBot.markTask(s.split(" ")[1].charAt(0) - '0');
-            } else if (s.split(" ")[0].equalsIgnoreCase("unmark")) {
-                chatBot.unmarkTask(s.split(" ")[1].charAt(0) - '0');
-            } else if (s.equalsIgnoreCase("-help")) {
+            } else if (input.split(" ")[0].equalsIgnoreCase("mark")) {
+                chatBot.markTask(input.split(" ")[1].charAt(0) - '0');
+            } else if (input.split(" ")[0].equalsIgnoreCase("unmark")) {
+                chatBot.unmarkTask(input.split(" ")[1].charAt(0) - '0');
+            } else if (input.equalsIgnoreCase("-help")) {
                 Nimbus.help();
             } else {
-                chatBot.addTask(s);
+                chatBot.addTask(input);
             }
             Nimbus.drawLine();
         }
+        Nimbus.drawLine();
     }
 }
