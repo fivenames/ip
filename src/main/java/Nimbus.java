@@ -34,16 +34,6 @@ public class Nimbus {
         System.out.println("-----------------------------------------------------");
     }
 
-    /*
-    private static void echo(String s) {
-        if (s.equalsIgnoreCase("bye")) {
-            Nimbus.exit();
-            return;
-        }
-        System.out.println(s);
-    }
-    */
-
     private static void help() {
         String help = """
                 todo [task] -- add a task without a deadline
@@ -68,30 +58,21 @@ public class Nimbus {
         this.tasks[this.numTasks] = new Event(s);
     }
 
-    public void addTask(String s) {
-        String[] command = s.split(" ", 2);
-
-        if (command.length < 2) {
-            System.out.println("Invalid command, enter -help for a list of commands");
-            return;
-        } else if (command[0].equalsIgnoreCase("todo")) {
-            this.addToDo(command[1]);
-        } else if (command[0].equalsIgnoreCase("deadline")) {
-            this.addDeadline(command[1]);
-        } else if (command[0].equalsIgnoreCase("event")) {
-            this.addEvent(command[1]);
-        } else {
-            System.out.println("Invalid command, enter -help for a list of commands");
-            return;
+    public void addTask(String command, String arg) {
+        switch (command) {
+        case "todo" -> this.addToDo(arg);
+        case "deadline" -> this.addDeadline(arg);
+        case "event" -> this.addEvent(arg);
         }
 
         this.numTasks++;
-        System.out.println("Task added: " + command[1].replace("/", ""));
+        System.out.println("Task added: " + arg.replace("/", ""));
     }
 
     public void listTasks() {
         if (this.numTasks == 0) {
             System.out.println("No tasks found.");
+            return;
         }
         for (int i = 0; i < this.numTasks; i++) {
             System.out.print(i + 1);
@@ -115,23 +96,33 @@ public class Nimbus {
         Scanner scanner = new Scanner(System.in);
 
         Nimbus.greet();
+        label:
         while (true) {
             String input = scanner.nextLine();
-            if (input.isBlank()) {
-                System.out.println("Enter -help to see the list of commands");
-            } else if (input.equalsIgnoreCase("bye")) {
-                Nimbus.exit();
-                break;
-            } else if (input.equalsIgnoreCase("list")) {
-                chatBot.listTasks();
-            } else if (input.split(" ")[0].equalsIgnoreCase("mark")) {
-                chatBot.markTask(input.split(" ")[1].charAt(0) - '0');
-            } else if (input.split(" ")[0].equalsIgnoreCase("unmark")) {
-                chatBot.unmarkTask(input.split(" ")[1].charAt(0) - '0');
-            } else if (input.equalsIgnoreCase("-help")) {
-                Nimbus.help();
-            } else {
-                chatBot.addTask(input);
+            try {
+                CommandParser parser = new CommandParser(input, chatBot.numTasks);
+                switch (parser.getCommandWord()) {
+                case "bye":
+                    Nimbus.exit();
+                    break label;
+                case "list":
+                    chatBot.listTasks();
+                    break;
+                case "mark":
+                    chatBot.markTask(Integer.parseInt(parser.getArguments()));
+                    break;
+                case "unmark":
+                    chatBot.unmarkTask(Integer.parseInt(parser.getArguments()));
+                    break;
+                case "-help":
+                    Nimbus.help();
+                    break;
+                default:
+                    chatBot.addTask(parser.getCommandWord(), parser.getArguments());
+                    break;
+                }
+            } catch (NimbusException e) {
+                e.handleException();
             }
             Nimbus.drawLine();
         }
