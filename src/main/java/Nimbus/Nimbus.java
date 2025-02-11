@@ -1,3 +1,10 @@
+package Nimbus;
+
+import Nimbus.Task.Deadline;
+import Nimbus.Task.Event;
+import Nimbus.Task.Task;
+import Nimbus.Task.Todo;
+
 import java.util.Scanner;
 
 public class Nimbus {

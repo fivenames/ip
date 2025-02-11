@@ -1,3 +1,5 @@
+package Nimbus.Task;
+
 public class Task {
     private final String description;
     private boolean isDone;

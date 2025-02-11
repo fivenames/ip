@@ -1,3 +1,5 @@
+package Nimbus;
+
 public class NimbusException extends Throwable {
     private final String type;
 

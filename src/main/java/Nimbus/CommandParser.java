@@ -1,3 +1,5 @@
+package Nimbus;
+
 public class CommandParser {
     public static String[] validCommands = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "-help"};
     private String commandWord;
@@ -6,12 +8,12 @@ public class CommandParser {
     public CommandParser(String input, int range) throws NimbusException {
         this.commandWord = null;
         this.arguments = null;
-        String[] commands = input.trim().toLowerCase().split(" ", 2);
+        String[] commands = input.trim().split(" ", 2);
         if (commands.length == 0) {
             throw new NimbusException("empty command");
         }
 
-        this.commandWord = commands[0];
+        this.commandWord = commands[0].toLowerCase();
         if (!this.isValidCommandWord()) {
             throw new NimbusException("invalid command word");
         }

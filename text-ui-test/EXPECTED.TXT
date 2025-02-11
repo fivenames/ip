@@ -9,7 +9,7 @@ Hello! I'm Nimbus
 What can I do for you?
 
 -----------------------------------------------------
-Task added: study for CS2113
+Task added: study for cs2113
 -----------------------------------------------------
-Task added: CS2113 exam from 3PM to 4PM
+Task added: CS2113 exam from 3pm to 4pm
 -----------------------------------------------------
