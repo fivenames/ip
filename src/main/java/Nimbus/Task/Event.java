@@ -9,9 +9,7 @@ public class Event extends Task {
     }
 
     @Override
-    public void print() {
-        System.out.print("[E]");
-        super.print();
-        System.out.println("(from:" + from.replace("/to", "to:") + ")");
+    public String toString(){
+        return "[E]" + super.toString() + "(from:" + this.from.replace("/to", "to:") + ")";
     }
 }

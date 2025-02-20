@@ -1,7 +1,7 @@
 package Nimbus;
 
 public class CommandParser {
-    public static String[] validCommands = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "-help"};
+    public static String[] validCommands = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "-help", "save"};
     private String commandWord;
     private String arguments;
 
@@ -24,6 +24,7 @@ public class CommandParser {
         switch (this.commandWord) {
         case "bye":
         case "-help":
+        case "save":
         case "list": {
             if (commands.length != 1) {
                 throw new NimbusException("invalid usage");
