@@ -4,15 +4,16 @@ import Nimbus.Task.Deadline;
 import Nimbus.Task.Event;
 import Nimbus.Task.Task;
 import Nimbus.Task.Todo;
+import java.util.ArrayList;
 
 import java.util.Scanner;
 
 public class Nimbus {
-    private final Task[] tasks;
+    private final ArrayList<Task> tasks;
     private int numTasks;
 
     public Nimbus() {
-        this.tasks = new Task[100];
+        this.tasks = new ArrayList<Task>();
         this.numTasks = 0;
     }
 
@@ -49,20 +50,21 @@ public class Nimbus {
                 list --list all tasks
                 mark [x] --mark task x as done
                 unmark [x] --mark task x as not done
+                delete [x] --delete task x
                 bye --exit""";
         System.out.println(help);
     }
 
     public void addToDo(String s) {
-        this.tasks[this.numTasks] = new Todo(s);
+        this.tasks.add(this.numTasks, new Todo(s));
     }
 
     public void addDeadline(String s) {
-        this.tasks[this.numTasks] = new Deadline(s);
+        this.tasks.add(this.numTasks, new Deadline(s));
     }
 
     public void addEvent(String s) {
-        this.tasks[this.numTasks] = new Event(s);
+        this.tasks.add(this.numTasks, new Event(s));
     }
 
     public void addTask(String command, String arg) {
@@ -84,18 +86,24 @@ public class Nimbus {
         for (int i = 0; i < this.numTasks; i++) {
             System.out.print(i + 1);
             System.out.print(". ");
-            tasks[i].print();
+            tasks.get(i).print();
         }
     }
 
     public void markTask(int i) {
-        this.tasks[i - 1].setIsDone(true);
+        this.tasks.get(i - 1).setIsDone(true);
         System.out.println("Task marked as done.");
     }
 
     public void unmarkTask(int i) {
-        this.tasks[i - 1].setIsDone(false);
+        this.tasks.get(i - 1).setIsDone(false);
         System.out.println("Task marked as undone.");
+    }
+
+    public void deleteTask(int i) {
+        this.tasks.remove(i - 1);
+        this.numTasks--;
+        System.out.println("Task deleted.");
     }
 
     public static void main(String[] args) {
@@ -120,6 +128,9 @@ public class Nimbus {
                     break;
                 case "unmark":
                     chatBot.unmarkTask(Integer.parseInt(parser.getArguments()));
+                    break;
+                case "delete":
+                    chatBot.deleteTask(Integer.parseInt(parser.getArguments()));
                     break;
                 case "-help":
                     Nimbus.help();
