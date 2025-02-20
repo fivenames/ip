@@ -13,9 +13,9 @@ public class Nimbus {
     private final ArrayList<Task> tasks;
     private int numTasks;
 
-    public Nimbus() {
-        this.tasks = new ArrayList<>();
-        this.numTasks = 0;
+    public Nimbus(ArrayList<Task> tasks, int numTasks) {
+        this.tasks = tasks;
+        this.numTasks = numTasks;
     }
 
     private static void greet() {
@@ -110,9 +110,14 @@ public class Nimbus {
     }
 
     public static void main(String[] args) {
-        Nimbus chatBot = new Nimbus();
+        NimbusFileHandler fileHandler = new NimbusFileHandler();
+        Nimbus chatBot = new Nimbus(new ArrayList<Task>(), 0);
+        try{
+            chatBot = fileHandler.load();
+        } catch (IOException e){
+            System.err.println("Error loading file");
+        }
         Scanner scanner = new Scanner(System.in);
-        NimbusFileHandler fileHandler = new NimbusFileHandler(chatBot.tasks);
 
         Nimbus.greet();
         label:
@@ -137,7 +142,7 @@ public class Nimbus {
                     chatBot.deleteTask(Integer.parseInt(parser.getArguments()));
                     break;
                 case "save":
-                    fileHandler.save(chatBot.numTasks);
+                    fileHandler.save(chatBot.numTasks, chatBot.tasks);
                     break;
                 case "-help":
                     Nimbus.help();
