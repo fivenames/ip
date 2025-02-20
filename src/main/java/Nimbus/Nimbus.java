@@ -78,6 +78,7 @@ public class Nimbus {
 
         this.numTasks++;
         System.out.println("Task added: " + arg.replace("/", ""));
+        System.out.println("Current number of Tasks: " + this.numTasks);
     }
 
     public void listTasks() {
@@ -111,7 +112,7 @@ public class Nimbus {
     public static void main(String[] args) {
         Nimbus chatBot = new Nimbus();
         Scanner scanner = new Scanner(System.in);
-        NimbusFileHandler fileHandler = new NimbusFileHandler(chatBot.tasks, chatBot.numTasks);
+        NimbusFileHandler fileHandler = new NimbusFileHandler(chatBot.tasks);
 
         Nimbus.greet();
         label:
@@ -136,7 +137,7 @@ public class Nimbus {
                     chatBot.deleteTask(Integer.parseInt(parser.getArguments()));
                     break;
                 case "save":
-                    fileHandler.save();
+                    fileHandler.save(chatBot.numTasks);
                     break;
                 case "-help":
                     Nimbus.help();

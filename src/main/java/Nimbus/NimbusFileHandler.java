@@ -9,18 +9,17 @@ import java.util.ArrayList;
 
 public class NimbusFileHandler {
     private final String path;
-    private final int contentSize;
     private final ArrayList<Task> content;
 
-    public NimbusFileHandler(ArrayList<Task> content, int contentSize) {
-        this.contentSize = contentSize;
+    public NimbusFileHandler(ArrayList<Task> content) {
         this.content = content;
         this.path = "./data/nimbus.txt";
     }
 
-    public void save() throws IOException {
-        if (contentSize == 0) {
+    public void save(int size) throws IOException {
+        if (size == 0) {
             System.out.println("Task List is empty");
+            return;
         }
 
         File file = new File(this.path);
