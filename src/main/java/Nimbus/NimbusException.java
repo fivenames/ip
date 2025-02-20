@@ -26,7 +26,7 @@ public class NimbusException extends Throwable {
             break;
         }
         case "invalid index": {
-            System.out.println("Enter a number to specify which task to mark or unmark");
+            System.out.println("Enter a number to specify the task");
             break;
         }
         case "no deadline specified": {

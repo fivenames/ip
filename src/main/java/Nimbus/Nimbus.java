@@ -6,6 +6,7 @@ import Nimbus.Task.Task;
 import Nimbus.Task.Todo;
 import java.util.ArrayList;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Nimbus {
@@ -13,7 +14,7 @@ public class Nimbus {
     private int numTasks;
 
     public Nimbus() {
-        this.tasks = new ArrayList<Task>();
+        this.tasks = new ArrayList<>();
         this.numTasks = 0;
     }
 
@@ -51,6 +52,7 @@ public class Nimbus {
                 mark [x] --mark task x as done
                 unmark [x] --mark task x as not done
                 delete [x] --delete task x
+                save --save tasks to txt file
                 bye --exit""";
         System.out.println(help);
     }
@@ -109,6 +111,7 @@ public class Nimbus {
     public static void main(String[] args) {
         Nimbus chatBot = new Nimbus();
         Scanner scanner = new Scanner(System.in);
+        NimbusFileHandler fileHandler = new NimbusFileHandler(chatBot.tasks, chatBot.numTasks);
 
         Nimbus.greet();
         label:
@@ -132,6 +135,9 @@ public class Nimbus {
                 case "delete":
                     chatBot.deleteTask(Integer.parseInt(parser.getArguments()));
                     break;
+                case "save":
+                    fileHandler.save();
+                    break;
                 case "-help":
                     Nimbus.help();
                     break;
@@ -141,6 +147,8 @@ public class Nimbus {
                 }
             } catch (NimbusException e) {
                 e.handleException();
+            } catch (IOException e) {
+                System.err.println("Failed to output to file!");
             }
             Nimbus.drawLine();
         }

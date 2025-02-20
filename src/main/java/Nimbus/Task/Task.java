@@ -21,8 +21,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public String toString(){
+        return (this.getIsDone() ? "[X] " : "[ ] ") + this.getDescription();
+    }
+
     public void print(){
-        System.out.print(this.getIsDone() ? "[X] " : "[ ] ");
-        System.out.print(this.getDescription());
+        System.out.println(this);
     }
 }

@@ -9,9 +9,7 @@ public class Deadline extends Task{
     }
 
     @Override
-    public void print() {
-        System.out.print("[D]");
-        super.print();
-        System.out.println("(by:" + by + ")");
+    public String toString(){
+        return "[D]" + super.toString() + "(by:" + this.by + ")";
     }
 }
