@@ -86,10 +86,10 @@ public class Nimbus {
             System.out.println("No tasks found.");
             return;
         }
-        for (int i = 0; i < this.numTasks; i++) {
-            System.out.print(i + 1);
+        for (int taskIndex = 0; taskIndex < this.numTasks; taskIndex++) {
+            System.out.print(taskIndex + 1);
             System.out.print(". ");
-            tasks.get(i).print();
+            tasks.get(taskIndex).print();
         }
     }
 
@@ -120,7 +120,7 @@ public class Nimbus {
         Scanner scanner = new Scanner(System.in);
 
         Nimbus.greet();
-        label:
+        programExecution:
         while (true) {
             String input = scanner.nextLine();
             try {
@@ -128,7 +128,7 @@ public class Nimbus {
                 switch (parser.getCommandWord()) {
                 case "bye":
                     Nimbus.exit();
-                    break label;
+                    break programExecution;
                 case "list":
                     chatBot.listTasks();
                     break;

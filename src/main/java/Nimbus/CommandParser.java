@@ -17,10 +17,15 @@ public class CommandParser {
         if (!this.isValidCommandWord()) {
             throw new NimbusException("invalid command word");
         }
+
         if (commands.length == 2) {
             this.arguments = commands[1];
         }
 
+        checkValidUsage(commands, range);
+    }
+
+    private void checkValidUsage(String[] commands, int range) throws NimbusException {
         switch (this.commandWord) {
         case "bye":
         case "-help":
@@ -31,10 +36,9 @@ public class CommandParser {
             }
             break;
         }
-
         case "delete":
         case "mark":
-        case "unmark": {
+        case "unmark":
             if (commands.length != 2) {
                 throw new NimbusException("invalid usage");
             }
@@ -47,32 +51,27 @@ public class CommandParser {
                 throw new NimbusException("invalid index");
             }
             break;
-        }
-
-        case "todo": {
+        case "todo":
             if (commands.length != 2) {
                 throw new NimbusException("invalid usage");
             }
             break;
-        }
-        case "deadline": {
+        case "deadline":
             if (commands.length != 2) {
                 throw new NimbusException("invalid usage");
             }
-            if(!this.arguments.contains("/by")) {
+            if (!this.arguments.contains("/by")) {
                 throw new NimbusException("no deadline specified");
             }
             break;
-        }
-        case "event": {
+        case "event":
             if (commands.length != 2) {
                 throw new NimbusException("invalid usage");
             }
-            if(!this.arguments.contains("/from") || !this.arguments.contains("/to")) {
+            if (!this.arguments.contains("/from") || !this.arguments.contains("/to")) {
                 throw new NimbusException("no event specified");
             }
             break;
-        }
         }
     }
 
