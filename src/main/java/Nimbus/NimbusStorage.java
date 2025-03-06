@@ -12,10 +12,10 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
-public class NimbusFileHandler {
+public class NimbusStorage {
     private final String path;;
 
-    public NimbusFileHandler() {
+    public NimbusStorage() {
         this.path = "./data/nimbus.txt";
     }
 

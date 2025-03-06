@@ -1,11 +1,11 @@
 package Nimbus;
 
-public class CommandParser {
+public class NimbusCommandParser {
     public static String[] validCommands = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "-help", "delete", "save"};
     private String commandWord;
     private String arguments;
 
-    public CommandParser(String input, int range) throws NimbusException {
+    public NimbusCommandParser(String input, int range) throws NimbusException {
         this.commandWord = null;
         this.arguments = null;
         String[] commands = input.trim().split(" ", 2);
