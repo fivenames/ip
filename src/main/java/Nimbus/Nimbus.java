@@ -20,7 +20,7 @@ public class Nimbus {
         Nimbus chatBot = new Nimbus(new ArrayList<>(), 0);
         try {
             chatBot = fileHandler.load();
-        } catch (IOException e) {s
+        } catch (IOException e) {
             System.err.println("Error loading file");
         }
         Scanner scanner = new Scanner(System.in);
