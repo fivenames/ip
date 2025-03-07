@@ -18,7 +18,6 @@ public class NimbusStorage {
     public NimbusStorage() {
         this.path = "./data/nimbus.txt";
     }
-
     // Load from file
     public Nimbus load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -39,7 +38,10 @@ public class NimbusStorage {
         return new Nimbus(tasks, numTasks);
     }
 
-    // Parse the task in one line of the file
+    /**
+     * Load the storage data if the storage file exists.
+     * @param line the current line read from the text file.
+     *  */
     private static Task loadTask(String line) {
         char type = line.charAt(1);
         String arg = line.substring(3);
@@ -69,8 +71,11 @@ public class NimbusStorage {
         return task;
     }
 
-    // Save into file
-    public void save(int size, ArrayList<Task> content) throws IOException {
+    /**
+     * Save the current program memory into the storage file.
+     * @param content the task list.
+     *  */
+    public void save(ArrayList<Task> content) throws IOException {
         File file = initFile();
 
         try (FileWriter writer = new FileWriter(file)) {
@@ -83,7 +88,10 @@ public class NimbusStorage {
         }
     }
 
-    // Create file object if not exist
+    /**
+     * Create the file if it does not exist.
+     * @throws IOException if fail to create file.
+     *  */
     private File initFile() throws IOException {
         File file = new File(this.path);
         if (!file.getParentFile().exists()) {
