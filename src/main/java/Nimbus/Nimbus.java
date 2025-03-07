@@ -51,7 +51,7 @@ public class Nimbus {
                     chatBot.taskList.deleteTask(Integer.parseInt(parser.getArguments()));
                     break;
                 case "save":
-                    fileHandler.save(chatBot.taskList.getNumTasks(), chatBot.taskList.getTasks());
+                    fileHandler.save(chatBot.taskList.getTasks());
                     break;
                 case "-help":
                     NimbusUI.help();
