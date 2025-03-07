@@ -36,6 +36,7 @@ public class NimbusUI {
                 unmark [x] --mark task x as not done
                 delete [x] --delete task x
                 save --save tasks to txt file
+                find [keyword] -- find the task containing the keyword
                 bye --exit""";
         System.out.println(help);
     }
