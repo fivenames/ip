@@ -17,7 +17,7 @@ public class Nimbus {
 
     public static void main(String[] args) {
         NimbusStorage fileHandler = new NimbusStorage();
-        Nimbus chatBot = new Nimbus(new ArrayList<Task>(), 0);
+        Nimbus chatBot = new Nimbus(new ArrayList<>(), 0);
         try {
             chatBot = fileHandler.load();
         } catch (IOException e) {
