@@ -120,7 +120,7 @@ Task list has been saved to ./data/nimbus.txt
 ## Others
 
 Help: get a list of possible commands
-Keyword: -help
+Keyword: -help 
 
 Exit: exits the program
 Keyword: bye
