@@ -18,7 +18,6 @@ public class NimbusStorage {
     public NimbusStorage() {
         this.path = "./data/nimbus.txt";
     }
-
     // Load from file
     public Nimbus load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -39,7 +38,9 @@ public class NimbusStorage {
         return new Nimbus(tasks, numTasks);
     }
 
-    // Parse the task in one line of the file
+    /**
+     * Load the storage data if the storage file exists.
+     *  */
     private static Task loadTask(String line) {
         char type = line.charAt(1);
         String arg = line.substring(3);
@@ -52,24 +53,26 @@ public class NimbusStorage {
             arg = arg.replace("[ ] ", "");
         }
         Task task = new Task(arg);
-        switch (type) {
-            case 'T':
-                task = new Todo(arg);
-                break;
-            case 'D':
+        task = switch (type) {
+            case 'T' -> new Todo(arg);
+            case 'D' -> {
                 arg = arg.substring(0, arg.length() - 1);
-                task = new Deadline(arg.replace("(by:", "/by"));
-                break;
-            case 'E':
+                yield new Deadline(arg.replace("(by:", "/by"));
+            }
+            case 'E' -> {
                 arg = arg.substring(0, arg.length() - 1);
-                task = new Event(arg.replace("(from:", "/from").replace("to:", "/to"));
-                break;
+                yield new Event(arg.replace("(from:", "/from").replace("to:", "/to"));
+            }
+            default -> task;
         };
+        ;
         task.setIsDone(done);
         return task;
     }
 
-    // Save into file
+    /**
+     * Save the current program memory into the storage file
+     *  */
     public void save(int size, ArrayList<Task> content) throws IOException {
         File file = initFile();
 
@@ -83,7 +86,9 @@ public class NimbusStorage {
         }
     }
 
-    // Create file object if not exist
+    /**
+     * Create the file if it does not exist.
+     *  */
     private File initFile() throws IOException {
         File file = new File(this.path);
         if (!file.getParentFile().exists()) {

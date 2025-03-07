@@ -31,6 +31,9 @@ public class TaskList {
         this.tasks.add(this.numTasks, new Event(s));
     }
 
+    /**
+     * Create the corresponding type of task and add to the task list.
+     *  */
     public void addTask(String command, String arg) {
         switch (command) {
         case "todo" -> this.addToDo(arg);
@@ -55,11 +58,17 @@ public class TaskList {
         }
     }
 
+    /**
+     * Mark the status of the task of the task index specified as done.
+     *  */
     public void markTask(int i) {
         this.tasks.get(i - 1).setIsDone(true);
         System.out.println("Task marked as done.");
     }
 
+    /**
+     * Mark the status of the task of the task index specified as not done.
+     *  */
     public void unmarkTask(int i) {
         this.tasks.get(i - 1).setIsDone(false);
         System.out.println("Task marked as undone.");

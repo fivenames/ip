@@ -5,6 +5,9 @@ public class NimbusCommandParser {
     private String commandWord;
     private String arguments;
 
+    /**
+     * Parser the string from the command line for program logic.
+     *  */
     public NimbusCommandParser(String input, int range) throws NimbusException {
         this.commandWord = null;
         this.arguments = null;
@@ -25,6 +28,9 @@ public class NimbusCommandParser {
         checkValidUsage(commands, range);
     }
 
+    /**
+     * Validate each supported command words to prevent invalid arguments from inputting into the program.
+     *  */
     private void checkValidUsage(String[] commands, int range) throws NimbusException {
         switch (this.commandWord) {
         case "bye":
@@ -75,6 +81,10 @@ public class NimbusCommandParser {
         }
     }
 
+
+    /**
+     * Validate if the command words inputted is supported by the program.
+     *  */
     private boolean isValidCommandWord() {
         boolean valid = false;
         for (String validCommand : validCommands) {
