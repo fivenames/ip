@@ -7,6 +7,9 @@ public class NimbusCommandParser {
 
     /**
      * Parser the string from the command line for program logic.
+     * @param input user input string
+     * @param range number of tasks in the task list
+     * @throws NimbusException based on the type of invalid usage.
      *  */
     public NimbusCommandParser(String input, int range) throws NimbusException {
         this.commandWord = null;
@@ -30,6 +33,9 @@ public class NimbusCommandParser {
 
     /**
      * Validate each supported command words to prevent invalid arguments from inputting into the program.
+     * @param commands: commands of user.
+     * @param range: valid range of task index.
+     * @throws NimbusException based on what is the type of the invalid usage.
      *  */
     private void checkValidUsage(String[] commands, int range) throws NimbusException {
         switch (this.commandWord) {
@@ -84,6 +90,7 @@ public class NimbusCommandParser {
 
     /**
      * Validate if the command words inputted is supported by the program.
+     * @return true if command word is supported, false otherwise.
      *  */
     private boolean isValidCommandWord() {
         boolean valid = false;

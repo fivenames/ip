@@ -40,6 +40,7 @@ public class NimbusStorage {
 
     /**
      * Load the storage data if the storage file exists.
+     * @param line the current line read from the text file.
      *  */
     private static Task loadTask(String line) {
         char type = line.charAt(1);
@@ -71,9 +72,10 @@ public class NimbusStorage {
     }
 
     /**
-     * Save the current program memory into the storage file
+     * Save the current program memory into the storage file.
+     * @param content the task list.
      *  */
-    public void save(int size, ArrayList<Task> content) throws IOException {
+    public void save(ArrayList<Task> content) throws IOException {
         File file = initFile();
 
         try (FileWriter writer = new FileWriter(file)) {
@@ -88,6 +90,7 @@ public class NimbusStorage {
 
     /**
      * Create the file if it does not exist.
+     * @throws IOException if fail to create file.
      *  */
     private File initFile() throws IOException {
         File file = new File(this.path);

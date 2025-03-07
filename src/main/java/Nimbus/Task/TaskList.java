@@ -33,6 +33,8 @@ public class TaskList {
 
     /**
      * Create the corresponding type of task and add to the task list.
+     * @param command command word.
+     * @param arg argument of the command.
      *  */
     public void addTask(String command, String arg) {
         switch (command) {
@@ -60,22 +62,24 @@ public class TaskList {
 
     /**
      * Mark the status of the task of the task index specified as done.
+     * @param index index of the task in the list.
      *  */
-    public void markTask(int i) {
-        this.tasks.get(i - 1).setIsDone(true);
+    public void markTask(int index) {
+        this.tasks.get(index - 1).setIsDone(true);
         System.out.println("Task marked as done.");
     }
 
     /**
      * Mark the status of the task of the task index specified as not done.
+     * @param index index of the task in the list.
      *  */
-    public void unmarkTask(int i) {
-        this.tasks.get(i - 1).setIsDone(false);
+    public void unmarkTask(int index) {
+        this.tasks.get(index - 1).setIsDone(false);
         System.out.println("Task marked as undone.");
     }
 
-    public void deleteTask(int i) {
-        this.tasks.remove(i - 1);
+    public void deleteTask(int index) {
+        this.tasks.remove(index - 1);
         this.numTasks--;
         System.out.println("Task deleted.");
     }
