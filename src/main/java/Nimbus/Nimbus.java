@@ -44,6 +44,9 @@ public class Nimbus {
                 case "unmark":
                     chatBot.taskList.unmarkTask(Integer.parseInt(parser.getArguments()));
                     break;
+                case "find":
+                    chatBot.taskList.findTask(parser.getArguments());
+                    break;
                 case "delete":
                     chatBot.taskList.deleteTask(Integer.parseInt(parser.getArguments()));
                     break;
