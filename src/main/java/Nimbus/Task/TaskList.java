@@ -55,6 +55,22 @@ public class TaskList {
         }
     }
 
+    public void findTask(String arg){
+        boolean found = false;
+        for (int taskIndex = 0; taskIndex < this.numTasks; taskIndex++){
+            if(tasks.get(taskIndex).toString().contains(arg)){
+                found = true;
+                System.out.print(taskIndex + 1);
+                System.out.print(". ");
+                System.out.println(tasks.get(taskIndex));
+            }
+        }
+
+        if(!found){
+            System.out.println("Task with the keyword is not found.");
+        }
+    }
+
     public void markTask(int i) {
         this.tasks.get(i - 1).setIsDone(true);
         System.out.println("Task marked as done.");
