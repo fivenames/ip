@@ -13,7 +13,7 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 
 public class NimbusStorage {
-    private final String path;;
+    private final String path;
 
     public NimbusStorage() {
         this.path = "./data/nimbus.txt";
