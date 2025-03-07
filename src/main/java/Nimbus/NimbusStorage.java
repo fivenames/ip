@@ -66,7 +66,7 @@ public class NimbusStorage {
             }
             default -> task;
         };
-        ;
+
         task.setIsDone(done);
         return task;
     }

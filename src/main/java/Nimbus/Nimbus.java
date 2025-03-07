@@ -17,7 +17,7 @@ public class Nimbus {
 
     public static void main(String[] args) {
         NimbusStorage fileHandler = new NimbusStorage();
-        Nimbus chatBot = new Nimbus(new ArrayList<Task>(), 0);
+        Nimbus chatBot = new Nimbus(new ArrayList<>(), 0);
         try {
             chatBot = fileHandler.load();
         } catch (IOException e) {
@@ -43,6 +43,9 @@ public class Nimbus {
                     break;
                 case "unmark":
                     chatBot.taskList.unmarkTask(Integer.parseInt(parser.getArguments()));
+                    break;
+                case "find":
+                    chatBot.taskList.findTask(parser.getArguments());
                     break;
                 case "delete":
                     chatBot.taskList.deleteTask(Integer.parseInt(parser.getArguments()));

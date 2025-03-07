@@ -1,7 +1,7 @@
 package Nimbus;
 
 public class NimbusCommandParser {
-    public static String[] validCommands = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "-help", "delete", "save"};
+    public static String[] validCommands = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "-help", "delete", "save", "find"};
     private String commandWord;
     private String arguments;
 
@@ -63,6 +63,7 @@ public class NimbusCommandParser {
                 throw new NimbusException("invalid index");
             }
             break;
+        case "find":
         case "todo":
             if (commands.length != 2) {
                 throw new NimbusException("invalid usage");
