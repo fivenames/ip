@@ -52,19 +52,19 @@ public class NimbusStorage {
             arg = arg.replace("[ ] ", "");
         }
         Task task = new Task(arg);
-        switch (type) {
-            case 'T':
-                task = new Todo(arg);
-                break;
-            case 'D':
+        task = switch (type) {
+            case 'T' -> new Todo(arg);
+            case 'D' -> {
                 arg = arg.substring(0, arg.length() - 1);
-                task = new Deadline(arg.replace("(by:", "/by"));
-                break;
-            case 'E':
+                yield new Deadline(arg.replace("(by:", "/by"));
+            }
+            case 'E' -> {
                 arg = arg.substring(0, arg.length() - 1);
-                task = new Event(arg.replace("(from:", "/from").replace("to:", "/to"));
-                break;
+                yield new Event(arg.replace("(from:", "/from").replace("to:", "/to"));
+            }
+            default -> task;
         };
+
         task.setIsDone(done);
         return task;
     }
