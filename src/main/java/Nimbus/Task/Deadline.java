@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 public class Deadline extends Task{
     private final String by;
 
+    /**
+     * Deadline tasks, able to identify the supported date pattern: DD/MM/YYYY
+     * @param description
+     */
     public Deadline(String description){
         super(description.split("/by")[0]);
         String[] arg = description.split("/by", 2);

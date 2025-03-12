@@ -1,5 +1,8 @@
 package Nimbus;
 
+/**
+ * Handles some of the UI for the chatbot
+ */
 public class NimbusUI {
     static void greet() {
         String logo = """

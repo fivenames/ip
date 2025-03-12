@@ -1,7 +1,10 @@
 package Nimbus.Task;
 
-import java.util.*;
+import java.util.ArrayList;
 
+/**
+ * Tracks a list of tasks added by the user.
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
     private int numTasks;
@@ -60,6 +63,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Finds the task containing the specific keyword.
+     * @param arg The keyword the user wish to search for.
+     */
     public void findTask(String arg){
         boolean found = false;
         for (int taskIndex = 0; taskIndex < this.numTasks; taskIndex++){
@@ -80,8 +87,8 @@ public class TaskList {
      * Mark the status of the task of the task index specified as done.
      * @param index index of the task in the list.
      *  */
-    public void markTask(int i) {
-        this.tasks.get(i - 1).setIsDone(true);
+    public void markTask(int index) {
+        this.tasks.get(index - 1).setIsDone(true);
         System.out.println("Task marked as done.");
     }
 

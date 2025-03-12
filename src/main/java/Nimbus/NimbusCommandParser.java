@@ -1,5 +1,8 @@
 package Nimbus;
 
+/**
+ * Handles the input from the user.
+ */
 public class NimbusCommandParser {
     public static String[] validCommands = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "-help", "delete", "save", "find"};
     private String commandWord;
