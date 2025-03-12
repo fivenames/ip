@@ -12,6 +12,9 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
+/**
+ * Handles the file writing and file reading for the chatbot.
+ */
 public class NimbusStorage {
     private final String path;
 

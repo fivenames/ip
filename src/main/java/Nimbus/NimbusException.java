@@ -1,5 +1,8 @@
 package Nimbus;
 
+/**
+ * Handles different invalid usage from the user
+ */
 public class NimbusException extends Throwable {
     private final String type;
 
